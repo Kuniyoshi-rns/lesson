@@ -3,14 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>商品一覧</title>
+
+    <style>
+        .flex{
+            display:flex;
+        }
+        button{
+            margin:10px;
+        }
+    </style>
+
 </head>
 <body>
 <h1>商品一覧</h1>
 
-<form action="product-list">
-    <input type="text" name="find"/>
-    <button type="submit">検索</button>
-</form>
+<div class="flex">
+    <form action="product-list">
+        <input type="text" name="find"/>
+        <button type="submit">検索</button>
+    </form>
+
+
+
+    <button type="button" onclick="location.href='product-add'">商品追加</button>
+</div>
 
 <br>
 
@@ -22,9 +38,19 @@
         <td><a th:href="@{http://localhost:8080/product/{id}(id=${product.id})}">[[ ${product.id} ]]</a></td>
         <td th:text="${product.name}"></td>
         <td th:text="${product.price}"></td>
+        <td>
+            <form th:action="'/update/'+${product.id}">
+                <button type="submit">修正</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="'/delete/'+${product.id}">
+                <button type="submit">削除</button>
+            </form>
+        </td>
+<!--        "@{http://localhost:8080/product/__${product.id}__}"-->
     </tr>
 </table>
-
 
 </body>
 </html>

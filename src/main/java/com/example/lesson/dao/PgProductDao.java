@@ -63,7 +63,7 @@ public class PgProductDao implements ProductDao{
         var param = new MapSqlParameterSource();
         param.addValue("find",find);
         param.addValue("likeFind","%"+find+"%");
-        return jdbcTemplate.query("SELECT * FROM products WHERE name LIKE :likeFind ORDER BY name = :find DESC",param,
+        return jdbcTemplate.query("SELECT * FROM products WHERE name LIKE :likeFind ORDER BY name = :find DESC, id",param,
                 new DataClassRowMapper<>(Product.class));
     }
 }
